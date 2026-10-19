@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Ledger tests</title>
+<style>body{font:1rem system-ui;margin:1rem}.pass{color:#0a6a2a}.fail{color:#a4161a;font-weight:700}</style></head>
+<body><h1>Ledger tests</h1><p id="sum" role="status"></p><ul id="out"></ul>
+<script type="module">
+import { validateField, validateRecord, validateImport, RE, collapse } from './scripts/validators.js';
+import { compileRegex, highlight, matches } from './scripts/search.js';
+let pass = 0, fail = 0;
+const t = (name, ok) => { ok ? pass++ : fail++; out.insertAdjacentHTML('beforeend', `<li class="${ok ? 'pass' : 'fail'}">${ok ? 'PASS' : 'FAIL'}: ${name}</li>`); };
+t('description rejects leading space', !!validateField('description', ' hi'));
+t('description rejects trailing space', !!validateField('description', 'hi '));
+t('description accepts normal text', !validateField('description', 'Lunch at cafeteria'));
+t('collapse squeezes double spaces', collapse('a   b') === 'a b');
+t('amount accepts 12.50 and 0', !validateField('amount', '12.50') && !validateField('amount', '0'));
+t('amount rejects 012, 1.234, -3, empty', ['012', '1.234', '-3', ''].every(v => validateField('amount', v)));
+t('date accepts 2024-02-29', !validateField('date', '2024-02-29'));
+t('date rejects 2025-02-30 and 2025-13-01', validateField('date', '2025-02-30') && validateField('date', '2025-13-01'));
+t('category accepts "Food" and "Fast-food stop"', !validateField('category', 'Food') && !validateField('category', 'Fast-food stop'));
+t('category rejects digits and double hyphen', validateField('category', 'Food1') && validateField('category', 'A--B'));
+t('back-reference catches "the the"', RE.dup.test('the the cat') && !RE.dup.test('the cat'));
+t('strict mode flags duplicate word', !!validateField('description', 'Coffee coffee', true) && !validateField('description', 'Coffee coffee'));
+t('lookahead rate rejects 0 and 0.00', !RE.rate.test('0') && !RE.rate.test('0.00') && RE.rate.test('0.92'));
+t('validateRecord returns no errors for good record', Object.keys(validateRecord({ description: 'Bus', amount: 4, category: 'Transport', date: '2025-01-02' })).length === 0);
+t('compileRegex returns null for invalid pattern', compileRegex('(') === null && compileRegex('') === null);
+t('highlight wraps match in <mark>', highlight('Coffee', compileRegex('off')) === 'C<mark>off</mark>ee');
+t('highlight escapes HTML', highlight('<b>', compileRegex('b')) === '&lt;<mark>b</mark>&gt;');
+t('highlight survives empty matches', highlight('abc', compileRegex('x*')) === 'abc');
+t('cents search matches 12.50 only', matches({ description: 'a', category: 'b', date: '2025-01-01', amount: 12.5 }, /\.\d{2}\b/) && !matches({ description: 'a', category: 'b', date: '2025-01-01', amount: 12 }, /\.\d{2}\b/));
+t('import rejects non-array', validateImport({}).errors.length > 0);
+t('import rejects bad record', validateImport([{ id: 'x', description: ' bad', amount: '1', category: 'F', date: 'nope' }]).errors.length > 0);
+const good = { id: 'rec_1', description: 'Bus', amount: 4, category: 'Transport', date: '2025-01-02', createdAt: '2025-01-02T00:00:00Z', updatedAt: '2025-01-02T00:00:00Z' };
+t('import accepts valid records', validateImport([good]).errors.length === 0 && validateImport({ records: [good] }).errors.length === 0);
+t('import rejects duplicate ids', validateImport([good, good]).errors.length > 0);
+document.getElementById('sum').textContent = `${pass} passed, ${fail} failed`;
+</script></body></html>
