@@ -1,0 +1,119 @@
+[
+  {
+    "id": "rec_0001",
+    "description": "Lunch at cafeteria",
+    "amount": 12.5,
+    "category": "Food",
+    "date": "2025-09-25",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0002",
+    "description": "Chemistry textbook",
+    "amount": 666666666666,
+    "category": "Books",
+    "date": "2025-09-23",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0003",
+    "description": "Bus pass",
+    "amount": 45,
+    "category": "Transport",
+    "date": "2025-09-20",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0004",
+    "description": "Coffee with friends",
+    "amount": 8.75,
+    "category": "Entertainment",
+    "date": "2025-09-28",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0005",
+    "description": "Late fee fee",
+    "amount": 0.01,
+    "category": "Fees",
+    "date": "2025-02-28",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0006",
+    "description": "Leap day pizza",
+    "amount": 19.99,
+    "category": "Food",
+    "date": "2024-02-29",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0007",
+    "description": "Laptop repair and replacement keyboard",
+    "amount": 1249.5,
+    "category": "Other",
+    "date": "2025-01-01",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0008",
+    "description": "Tea",
+    "amount": 0,
+    "category": "Food",
+    "date": "2025-12-31",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0009",
+    "description": "Scholarship dinner <b>gala</b> & \"raffle\"",
+    "amount": 300,
+    "category": "Entertainment",
+    "date": "2025-09-27",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0010",
+    "description": "Cafe éclair ☕",
+    "amount": 3.2,
+    "category": "Food",
+    "date": "2025-09-26",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0011",
+    "description": "Printing printing",
+    "amount": 5,
+    "category": "Fees",
+    "date": "2025-09-29",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0012",
+    "description": "Moto taxi to Kimironko",
+    "amount": 2.25,
+    "category": "Transport",
+    "date": "2025-09-29",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "rec_0013",
+    "description": "Huge donation",
+    "amount": 99999999.99,
+    "category": "Other",
+    "date": "2025-09-24",
+    "createdAt": "2025-09-29T10:00:00.000Z",
+    "updatedAt": "2025-09-29T10:00:00.000Z"
+  }
+]

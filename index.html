@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ledger - Student Finance Tracker</title>
+<link rel="stylesheet" href="styles/main.css">
+<script type="module" src="scripts/main.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <p class="brand">Ledger</p>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#records">Records</a></li>
+      <li><a href="#add">Add</a></li>
+      <li><a href="#settings">Settings</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+</header>
+<p id="status" class="toast" role="status" aria-live="polite"></p>
+<p id="alert" class="toast bad" role="alert"></p>
+<main id="main" tabindex="-1">
+
+<section id="dashboard" aria-labelledby="h-dash">
+  <h2 id="h-dash" tabindex="-1">Dashboard</h2>
+  <div class="meter-wrap">
+    <div class="meter" aria-hidden="true"><div id="meter-fill"></div></div>
+    <p id="cap-polite" class="cap" aria-live="polite"></p>
+    <p id="cap-assertive" class="cap over" aria-live="assertive"></p>
+  </div>
+  <dl class="stats">
+    <div><dt>Transactions</dt><dd id="s-count">0</dd></div>
+    <div><dt>Total spent</dt><dd id="s-sum">0</dd></div>
+    <div><dt>Top category</dt><dd id="s-top">-</dd></div>
+  </dl>
+  <h3>Last 7 days</h3>
+  <p id="trend-note" class="muted"></p>
+  <div id="trend" class="bars" role="img" aria-label="Spending trend"></div>
+</section>
+
+<section id="records" aria-labelledby="h-rec" hidden>
+  <h2 id="h-rec" tabindex="-1">Records</h2>
+  <div class="search">
+    <label for="q">Search with a regex</label>
+    <input id="q" type="text" placeholder="e.g. (coffee|tea) or \.\d{2}\b" autocomplete="off" spellcheck="false" aria-describedby="q-err">
+    <label class="check"><input id="ci" type="checkbox" checked> Ignore case</label>
+    <span id="q-err" class="err"></span>
+  </div>
+  <div class="sorts" role="group" aria-label="Sort by">
+    <button type="button" data-sort="date">Date</button>
+    <button type="button" data-sort="description">Description</button>
+    <button type="button" data-sort="amount">Amount</button>
+  </div>
+  <p id="count" class="muted"></p>
+  <table>
+    <caption class="sr">Transactions</caption>
+    <thead><tr><th scope="col">Date</th><th scope="col">Description</th><th scope="col">Category</th><th scope="col">Amount</th><th scope="col">Actions</th></tr></thead>
+    <tbody id="rows"></tbody>
+  </table>
+</section>
+
+<section id="add" aria-labelledby="h-add" hidden>
+  <h2 id="h-add" tabindex="-1">Add transaction</h2>
+  <form id="form" novalidate>
+    <div class="field"><label for="f-description">Description</label>
+      <input id="f-description" name="description" aria-describedby="e-description" autocomplete="off">
+      <span id="e-description" class="err"></span></div>
+    <div class="field"><label for="f-amount">Amount (USD)</label>
+      <input id="f-amount" name="amount" inputmode="decimal" aria-describedby="e-amount" autocomplete="off">
+      <span id="e-amount" class="err"></span></div>
+    <div class="field"><label for="f-category">Category</label>
+      <input id="f-category" name="category" list="cats" aria-describedby="e-category" autocomplete="off">
+      <datalist id="cats"></datalist>
+      <span id="e-category" class="err"></span></div>
+    <div class="field"><label for="f-date">Date (YYYY-MM-DD)</label>
+      <input id="f-date" name="date" placeholder="2025-09-29" aria-describedby="e-date" autocomplete="off">
+      <span id="e-date" class="err"></span></div>
+    <button type="submit" class="primary">Add transaction</button>
+  </form>
+</section>
+
+<section id="settings" aria-labelledby="h-set" hidden>
+  <h2 id="h-set" tabindex="-1">Settings</h2>
+  <form id="settings-form" novalidate>
+    <p class="muted">Base currency is USD. Rates say how much of each currency equals 1 USD.</p>
+    <div class="field"><label for="rate-eur">EUR per 1 USD</label><input id="rate-eur" inputmode="decimal"></div>
+    <div class="field"><label for="rate-rwf">RWF per 1 USD</label><input id="rate-rwf" inputmode="decimal"></div>
+    <div class="field"><label for="display">Show amounts in</label>
+      <select id="display"><option>USD</option><option>EUR</option><option>RWF</option></select></div>
+    <div class="field"><label for="cap">Spending cap (USD)</label><input id="cap" inputmode="decimal"></div>
+    <div class="field"><label for="categories">Categories (comma separated)</label><input id="categories"></div>
+    <p id="settings-err" class="err" role="alert"></p>
+    <button type="submit" class="primary">Save settings</button>
+  </form>
+  <h3>data</h3>
+  <div class="row-actions">
+    <button type="button" id="export">Export JSON</button>
+    <label class="btn" for="import">Import JSON</label>
+    <input type="file" id="import" accept="application/json,.json" class="sr-file">
+    <button type="button" id="reset">reset all data</button>
+  </div>
+</section>
+
+<section id="about" aria-labelledby="h-about" hidden>
+  <h2 id="h-about" tabindex="-1">About</h2>
+  <p>Ledger helps students track where their money goes: log transactions, search them with regular expressions, and stay under a spending cap. Data stays in your browser.</p>
+  <p>Built by Landry Irakoze for the Building Responsive UI summative.</p>
+  <ul>
+    <li>GitHub: <a href="https://github.com/Landry-irakoze">Landry-irakoze</a></li>
+    <li>Email: <a href="mailto:l.irakozerw@alustudent.com">l.irakozerw@alustudent.com</a></li>
+  </ul>
+</section>
+</main>
+<footer><p>Ledger - vanilla HTML, CSS and JavaScript.</p></footer>
+</body>
+</html>
