@@ -48,7 +48,7 @@ Note: seed records may contain duplicate words on purpose; import accepts them, 
 
 ## Run and test
 ```
-python3 -m http.server 8000     # modules need http://, not file://
+python3 -m http.server 8000     
 ```
 Open http://localhost:8000 for the app and http://localhost:8000/tests.html for the assertions (22 checks on validators, search, highlight and import).
 
