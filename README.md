@@ -1,9 +1,9 @@
 # Ledger - Student Finance Tracker
 
 **Theme:** Student Finance Tracker
-**Live site (GitHub Pages):** https://Landry-irakoze.github.io/REPO-NAME/
-**Demo video (unlisted):** ADD-LINK-HERE
-**Author:** Landry Irakoze - [GitHub](https://github.com/Landry-irakoze) - you@example.com
+**Live site (GitHub Pages):** https://github.com/Landry-irakoze/Ledger
+**Demo video (unlisted):** https://drive.google.com/file/d/1JNjSXmw8MGXgGYuPa6Vvnxhw34mODTTf/view?usp=sharing
+**Author:** Landry Irakoze - [GitHub](https://github.com/Landry-irakoze) 
 
 Vanilla HTML, CSS and JavaScript (ES modules). No frameworks.
 
